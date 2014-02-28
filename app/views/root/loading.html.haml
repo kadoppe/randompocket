@@ -1,0 +1,18 @@
+.row
+  .span4.offset4
+    .loading
+      %p
+        %i.icon-spinner.icon-spin
+        Pocketから記事を読み込んでいます...
+
+- content_for :javascript do
+  :javascript
+    $(function() {
+      setInterval(function() {
+        $.get('/users/fetching', function(data) {
+          if (!data.fetching) {
+            location.href = '/viewer'
+          }
+        });
+      }, 2000)
+    });

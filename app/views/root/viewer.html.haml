@@ -1,0 +1,95 @@
+.article
+  %iframe(src="#{@article.url}" border="0" frameborder="0" hspace="0" vspace="0" marginheight="0" marginwidth="0")
+  .loading-modal(style="display: none;")
+    %i.icon-spinner.icon-spin
+
+- content_for :javascript do
+  :javascript
+    $(function() {
+      var articleId = #{@article.id};
+      var $loadingModal = $('.loading-modal');
+
+      $('.btn-next').click(function() {
+        $this = $(this);
+        $this.attr('disabled', 'disabled');
+        $loadingModal.show();
+
+        $.ajax({
+          url: '/articles/random',
+          success: function(data) {
+            $this.removeAttr('disabled');
+            initFavoriteButton(false);
+            initArchiveButton(false);
+            initSocialButton(data.url, data.title);
+            initNewTabLink(data.url);
+
+            articleId = data.id
+            $('.article iframe').attr('src', data.url);
+            $loadingModal.hide();
+          },
+          error: function() {
+            location.href = '/viewer'
+          }
+        });
+      })
+
+      $('.btn-favorite').click(function() {
+        $this = $(this);
+
+        $this.attr('disabled', 'disabled')
+          .find('i').removeClass('icon-star')
+          .addClass('icon-spinner icon-spin');
+
+        $.post('/articles/' + articleId + '/favorite', function(data) {
+          initFavoriteButton(true);
+        })
+      });
+
+      $('.btn-archive').click(function() {
+        $this = $(this);
+
+        $this.attr('disabled', 'disabled')
+          .find('i').removeClass('icon-ok')
+          .addClass('icon-spinner icon-spin');
+
+        $.post('/articles/' + articleId + '/archive', function(data) {
+          initArchiveButton(true);
+        })
+      })
+
+      initSocialButton = function(url, title) {
+        $('.facebook-like').socialbutton('facebook_like', {
+          url: url,
+          button: 'button_count',
+          show_faces: false,
+          locale: 'ja_JP'
+        });
+        $('.hatena').socialbutton('hatena', {
+          url: url
+        });
+
+        $('.buffer').html("<a href=\"http://bufferapp.com/add\" class=\"buffer-add-button\" data-text=\"" + title + "\" data-url=\"" + url + "\" data-count=\"none\" >Buffer</a>")
+          .append($("<script src=\"http://static.bufferapp.com/js/button.js\">"));
+      };
+
+      initNewTabLink = function(url) {
+        $('.link-new-tab').attr('href', url)
+      };
+
+      initFavoriteButton = function(done) {
+        $('.btn-favorite').removeAttr('disabled').toggleClass('done', done)
+          .find('i')
+          .removeClass('icon-spinner icon-spin')
+          .addClass('icon-star');
+      };
+
+      initArchiveButton = function(done) {
+        $('.btn-archive').removeAttr('disabled').toggleClass('done', done)
+          .find('i')
+          .removeClass('icon-spinner icon-spin')
+          .addClass('icon-ok');
+      };
+
+      initSocialButton('#{@article.url}');
+      initNewTabLink('#{@article.url}');
+    });

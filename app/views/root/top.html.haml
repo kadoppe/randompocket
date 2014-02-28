@@ -1,0 +1,30 @@
+.row
+  .span8.offset2
+    .hero-unit.hero-unit-top
+      %h1 RandomPocket
+      %p
+        =link_to 'Pocket', 'http://getpocket.com/'
+        未読記事をランダムに表示。埋もれた記事を再発見しよう。
+
+      %p
+        = link_to 'Pocketアカウントでログイン', user_omniauth_authorize_path(:pocket), class: 'btn btn-success btn-large'
+
+      %p.social
+        %span.facebook-like
+        %span.tweet
+        %span.hatena
+
+      %footer
+        created by: <a href="http://twitter.com/kadoppe">@kadoppe</a>
+
+- content_for :javascript do
+  :javascript
+    $('.facebook-like').socialbutton('facebook_like', {
+      button: 'button_count',
+      show_faces: false,
+      locale: 'ja_JP'
+    });
+    $('.tweet').socialbutton('twitter', {
+      button: 'count'
+    });
+    $('.hatena').socialbutton('hatena');

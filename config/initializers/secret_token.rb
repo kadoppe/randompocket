@@ -1,0 +1,1 @@
+Randompocket::Application.config.secret_token = ENV['SECRET_KEY_BASE'] || 'ab3876309169d9cd1e2490ee3be742d604add3db9d806d101e2394e51103f6ae52733a30436d61b2771608593f98bebf123c0fb4be27c721bb739f37aa5eaadb'
