@@ -25,6 +25,7 @@ group :default do
   gem 'omniauth-pocket'
   gem 'pg'
   gem 'pocket-ruby'
+  gem 'puma'
   gem 'resque', require: 'resque/server'
   gem 'simple_form'
   gem 'twitter-bootstrap-rails'
