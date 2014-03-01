@@ -43,4 +43,5 @@ end
 
 group :development, :test do
   gem 'rails3-generators'
+  gem 'sqlite3'
 end
