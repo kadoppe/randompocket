@@ -39,9 +39,9 @@ group :development do
   gem 'pry'
   gem 'pry-remote'
   gem 'quiet_assets'
-  gem 'sqlite3'
 end
 
 group :development, :test do
   gem 'rails3-generators'
+  gem 'sqlite3'
 end

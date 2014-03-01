@@ -14,14 +14,14 @@
 ActiveRecord::Schema.define(:version => 20130503193752) do
 
   create_table "articles", :force => true do |t|
-    t.text     "url"
+    t.text     "url",         :limit => 255
     t.integer  "user_id"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
     t.integer  "item_id"
-    t.boolean  "read",        :default => false
+    t.boolean  "read",                       :default => false
     t.text     "title"
-    t.boolean  "can_display", :default => true
+    t.boolean  "can_display",                :default => true
   end
 
   add_index "articles", ["item_id"], :name => "index_articles_on_item_id"
@@ -31,15 +31,15 @@ ActiveRecord::Schema.define(:version => 20130503193752) do
 
   create_table "users", :force => true do |t|
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",       :default => 0
+    t.integer  "sign_in_count",                    :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "uid"
+    t.string   "uid",                 :limit => 8
     t.string   "name"
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
     t.string   "token"
     t.boolean  "fetching"
   end
