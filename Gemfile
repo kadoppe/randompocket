@@ -9,7 +9,7 @@ group :assets do
   gem 'compass-rails'
   gem 'libv8', '~> 3.3.10'
   gem 'sass-rails',   '~> 3.2.3'
-  gem 'therubyracer', "~> 0.10.2"
+  gem 'therubyracer', '~> 0.10.2'
   gem 'uglifier', '>= 1.0.3'
 end
 
@@ -36,12 +36,20 @@ end
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'guard', require: false
+  gem 'guard-rspec', require: false
   gem 'pry'
   gem 'pry-remote'
   gem 'quiet_assets'
 end
 
 group :development, :test do
+  gem 'factory_girl_rails'
+  gem 'rspec-rails'
+  gem 'spring'
+  gem 'turnip'
+  gem 'capybara', '2.0.3'
+  gem 'capybara-webkit'
   gem 'rails3-generators'
   gem 'sqlite3'
 end
