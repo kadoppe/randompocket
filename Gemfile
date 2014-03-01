@@ -46,12 +46,13 @@ group :development do
 end
 
 group :development, :test do
-  gem 'factory_girl_rails'
-  gem 'rspec-rails'
-  gem 'spring'
-  gem 'turnip'
   gem 'capybara', '2.0.3'
   gem 'capybara-webkit'
+  gem 'coveralls', require: false
+  gem 'factory_girl_rails'
   gem 'rails3-generators'
+  gem 'rspec-rails'
+  gem 'spring'
   gem 'sqlite3'
+  gem 'turnip'
 end
