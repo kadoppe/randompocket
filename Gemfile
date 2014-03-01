@@ -16,6 +16,7 @@ end
 group :default do
   gem 'devise'
   gem 'font-awesome-rails'
+  gem 'foreman'
   gem 'haml-rails'
   gem 'jquery-rails'
   gem 'less-rails'
