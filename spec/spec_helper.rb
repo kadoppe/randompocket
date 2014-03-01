@@ -6,6 +6,9 @@ require 'factory_girl'
 require 'turnip'
 require 'turnip/capybara'
 
+require 'coveralls'
+Coveralls.wear!
+
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 Dir.glob('spec/**/*steps.rb') { |f| load f, true }
 
