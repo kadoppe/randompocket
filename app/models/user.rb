@@ -1,9 +1,8 @@
 class User < ActiveRecord::Base
   devise :rememberable, :trackable, :omniauthable
-  attr_accessible :name, :uid, :token
 
   has_many :articles, dependent: :destroy
-  has_many :unread_articles, class_name: Article.name, conditions: ["articles.read = ?", false]
+  has_many :unread_articles, -> { where read: false }, class_name: Article.name
 
   def self.find_for_pocket_oauth(auth, signed_in_resource = nil)
     user = User.where(uid: auth.uid).first

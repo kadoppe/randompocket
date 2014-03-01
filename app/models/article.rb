@@ -1,6 +1,5 @@
 class Article < ActiveRecord::Base
   belongs_to :user
-  attr_accessible :url, :item_id, :user_id
 
   def fetch!
     uri = URI.parse(url)
