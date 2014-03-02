@@ -19,6 +19,7 @@ end
 
 group :default do
   gem 'devise'
+  gem 'figaro'
   gem 'font-awesome-rails'
   gem 'foreman'
   gem 'haml-rails'
