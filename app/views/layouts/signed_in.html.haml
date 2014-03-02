@@ -30,10 +30,10 @@
               - if action_name == 'viewer' && @article.present?
                 .navbar-controls
                   %button.btn.btn-favorite
-                    %i.icon-star
+                    = fa_icon 'star'
                   %a.btn.btn-success.btn-next 次の記事を読む
                   %button.btn.btn-archive
-                    %i.icon-ok
+                    = fa_icon 'check'
             .span2
               - if @article.present?
                 %ul.nav

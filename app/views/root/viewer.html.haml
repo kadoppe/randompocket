@@ -1,7 +1,7 @@
 .article
   %iframe(src="#{@article.url}" border="0" frameborder="0" hspace="0" vspace="0" marginheight="0" marginwidth="0")
   .loading-modal(style="display: none;")
-    %i.icon-spinner.icon-spin
+    = fa_icon 'spinner spin'
 
 - content_for :javascript do
   :javascript
