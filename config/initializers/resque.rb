@@ -1,10 +1,3 @@
-if Rails.env.development?
-  Resque.redis = 'localhost:6379'
-else
-  Resque.redis = ENV['REDISTOGO_URL']
+Resque.configure do |config|
+  config.redis = 'localhost:6379'
 end
-
-Resque::Server.use(Rack::Auth::Basic) do |user, password|
-  password == "ranpoke"
-end
-
