@@ -21,16 +21,14 @@ class ArticleFetcher
       inserts.push <<-INSERT
         (
           #{item_id},
-          '#{url}',
-          #{user_id},
-          now(),
-          now()
+          '#{url.gsub("'", "''")}',
+          #{user_id}
         )
       INSERT
 
       if i == info['list'].count - 1 || i % 2000
         sql = <<-SQL
-          INSERT INTO articles (item_id, url, user_id, created_at, updated_at)
+          INSERT INTO articles (item_id, url, user_id)
           VALUES #{inserts.join(", ")}
         SQL
         User.connection.execute sql
