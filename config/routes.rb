@@ -12,7 +12,6 @@ Randompocket::Application.routes.draw do
   root to: 'root#index'
 
   get :viewer, to: 'root#viewer'
-  get :dashboard, to: 'admin#dashboard'
 
   resources :users, only: %[] do
     collection do
